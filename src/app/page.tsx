@@ -4,10 +4,10 @@ import Head from 'next/head';
 import * as React from 'react';
 import '@/lib/env';
 
-import ArrowLink from '@/components/links/ArrowLink';
-import ButtonLink from '@/components/links/ButtonLink';
-import UnderlineLink from '@/components/links/UnderlineLink';
-import UnstyledLink from '@/components/links/UnstyledLink';
+import ArrowLink from '../components/links/ArrowLink';
+import ButtonLink from '../components/links/ButtonLink';
+import UnderlineLink from '../components/links/UnderlineLink';
+import UnstyledLink from '../components/links/UnstyledLink';
 
 /**
  * SVGR Support

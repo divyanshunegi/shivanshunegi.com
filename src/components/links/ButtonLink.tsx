@@ -2,11 +2,8 @@ import { LucideIcon } from 'lucide-react';
 import * as React from 'react';
 import { IconType } from 'react-icons';
 
-import { cn } from '@/lib/utils';
-
-import UnstyledLink, {
-  UnstyledLinkProps,
-} from '@/components/links/UnstyledLink';
+import UnstyledLink, { UnstyledLinkProps } from './UnstyledLink';
+import { cn } from '../../lib/utils';
 
 const ButtonLinkVariant = [
   'primary',
