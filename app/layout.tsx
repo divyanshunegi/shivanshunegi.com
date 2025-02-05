@@ -1,11 +1,11 @@
 import './globals.css';
 
 export const metadata = {
-  title: 'Shivanshu Negi | Filmmaker',
+  title: 'Shivanshu Negi',
   description:
-    'Independent filmmaker based in India, specializing in documentary and narrative storytelling that explores human connections and cultural narratives.',
+    'Doctor turned Entrepreneur, YouTuber, and Author. Join me on my journey of productivity and personal growth.',
   keywords:
-    'filmmaker, director, documentary, India, storytelling, film production',
+    'entrepreneur, youtuber, doctor, productivity, personal growth, lifenotes',
 };
 
 export default function RootLayout({
