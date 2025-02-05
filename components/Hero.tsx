@@ -23,14 +23,14 @@ export default function Hero() {
 
           {/* Introduction */}
           <p className='text-lg text-gray-600 mb-6'>
-            I'm Ali. I'm a Doctor turned Entrepreneur,{' '}
+            I'm Shivanshu. A film maker and{' '}
             <a
               href='https://youtube.com'
               className='text-blue-600 hover:underline'
             >
               YouTuber
             </a>
-            , and the author of First Year Free Time.
+            .
           </p>
 
           {/* Subscription Box */}
