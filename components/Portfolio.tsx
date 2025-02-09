@@ -14,7 +14,7 @@ const portfolioItems: PortfolioItem[] = [
     title: 'Feel Good With Etsy',
     description:
       'A creative direction and video production project for Etsy, focusing on social media marketing and brand storytelling.',
-    imageUrl: '/images/portfolio/etsy/cover.jpg',
+    imageUrl: '/images/PF1.png',
     category: 'Creative Direction & Video',
     link: 'https://www.behance.net/gallery/168105457/Feel-Good-With-Etsy',
   },
