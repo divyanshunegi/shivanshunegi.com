@@ -33,7 +33,7 @@ const Navigation = () => {
   const socialLinks = [
     {
       icon: <FaYoutube className='w-5 h-5' />,
-      url: 'https://youtube.com/@shivanshunegi',
+      url: 'https://youtube.com/@shivanshufilms',
     },
     {
       icon: <FaInstagram className='w-5 h-5' />,

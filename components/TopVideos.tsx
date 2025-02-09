@@ -87,7 +87,7 @@ export default function TopVideos() {
 
         <div className='text-center mt-12'>
           <a
-            href='https://youtube.com/@shivanshunegi'
+            href='https://youtube.com/@shivanshufilms'
             target='_blank'
             rel='noopener noreferrer'
             className='inline-flex items-center gap-2 bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors duration-200'
