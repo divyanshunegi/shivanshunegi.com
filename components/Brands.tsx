@@ -19,7 +19,7 @@ const brands: Brand[] = [
   },
   {
     name: 'IDA',
-    logo: '/images/brands/IDA.jpg',
+    logo: '/images/brands/IDA.png',
     website: 'https://www.indiandocumentaryassociation.org',
   },
 ];
