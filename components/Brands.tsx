@@ -9,13 +9,18 @@ interface Brand {
 const brands: Brand[] = [
   {
     name: 'Etsy',
-    logo: '/images/brands/etsy.png',
+    logo: '/images/brands/Etsy.png',
     website: 'https://www.etsy.com',
   },
   {
-    name: 'Devika Narain',
-    logo: '/images/brands/devika-narain.png',
-    website: 'https://www.devikanarain.com',
+    name: 'Dehancer',
+    logo: '/images/brands/Dehancer.png',
+    website: 'https://dehancer.com',
+  },
+  {
+    name: 'IDP',
+    logo: '/images/brands/IDP.png',
+    website: 'https://www.idp.com',
   },
 ];
 
