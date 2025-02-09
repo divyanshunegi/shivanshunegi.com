@@ -18,9 +18,9 @@ const brands: Brand[] = [
     website: 'https://dehancer.com',
   },
   {
-    name: 'IDP',
-    logo: '/images/brands/IDP.png',
-    website: 'https://www.idp.com',
+    name: 'IDA',
+    logo: '/images/brands/IDA.jpg',
+    website: 'https://www.indiandocumentaryassociation.org',
   },
 ];
 
