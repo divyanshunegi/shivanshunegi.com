@@ -1,9 +1,7 @@
 import Link from 'next/link';
 import {
-  FaFacebook,
   FaInstagram,
   FaLinkedin,
-  FaTiktok,
   FaXTwitter,
   FaYoutube,
 } from 'react-icons/fa6';
@@ -46,16 +44,8 @@ const Navigation = () => {
       url: 'https://linkedin.com/in/shivanshunegi',
     },
     {
-      icon: <FaTiktok className='w-5 h-5' />,
-      url: 'https://tiktok.com/@shivanshunegi',
-    },
-    {
       icon: <FaXTwitter className='w-5 h-5' />,
-      url: 'https://twitter.com/shivanshunegi',
-    },
-    {
-      icon: <FaFacebook className='w-5 h-5' />,
-      url: 'https://facebook.com/shivanshunegi',
+      url: 'https://x.com/shivanshunegiX',
     },
   ];
 
