@@ -2,6 +2,7 @@ import Brands from '../components/Brands';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
+import Navigation from '../components/Navigation';
 import Portfolio from '../components/Portfolio';
 import Subscribe from '../components/Subscribe';
 
@@ -13,6 +14,7 @@ export default function Home() {
       <Portfolio />
       <Brands />
       <Subscribe />
+      <Navigation />
       <Footer />
     </main>
   );
