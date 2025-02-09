@@ -26,6 +26,14 @@ const portfolioItems: PortfolioItem[] = [
     category: 'Cinematography & Film',
     link: 'https://www.behance.net/gallery/146474953/Devika-Narain-x-Etsy',
   },
+  {
+    title: 'Sony A7sIII + DCI 4K + Dehancer',
+    description:
+      'A cinematic test footage showcasing the capabilities of the Sony A7sIII camera in DCI 4K with Dehancer color grading.',
+    imageUrl: '/images/A7sIII + DCI 4K + Dehancer.jpg',
+    category: 'Camera Test & Color Grading',
+    link: 'https://www.youtube.com/watch?v=UPRqsogrsRc',
+  },
 ];
 
 export default function Portfolio() {
