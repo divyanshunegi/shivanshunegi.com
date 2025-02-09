@@ -1,6 +1,6 @@
 export default function AcademyHero() {
   return (
-    <section className='min-h-screen bg-gray-900 text-white py-20'>
+    <section className='min-h-screen bg-gray-900 text-white py-20 pt-[288px]'>
       <div className='max-w-6xl mx-auto px-4 sm:px-6 lg:px-8'>
         <div className='grid md:grid-cols-2 gap-12 items-center'>
           {/* Left Column - Text Content */}
