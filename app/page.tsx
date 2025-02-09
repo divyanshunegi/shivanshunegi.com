@@ -5,6 +5,7 @@ import Hero from '../components/Hero';
 import Navigation from '../components/Navigation';
 import Portfolio from '../components/Portfolio';
 import Subscribe from '../components/Subscribe';
+import TopVideos from '../components/TopVideos';
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <Header />
       <Hero />
       <Portfolio />
+      <TopVideos />
       <Brands />
       <Subscribe />
       <Navigation />
