@@ -18,6 +18,14 @@ const portfolioItems: PortfolioItem[] = [
     category: 'Creative Direction & Video',
     link: 'https://www.behance.net/gallery/168105457/Feel-Good-With-Etsy',
   },
+  {
+    title: 'Devika Narain x Etsy',
+    description:
+      'A cinematic film project showcasing the collaboration between renowned wedding designer Devika Narain and Etsy, shot on Sony A7sIII.',
+    imageUrl: '/images/PF2.png',
+    category: 'Cinematography & Film',
+    link: 'https://www.behance.net/gallery/146474953/Devika-Narain-x-Etsy',
+  },
 ];
 
 export default function Portfolio() {
