@@ -26,13 +26,13 @@ const brands: Brand[] = [
 
 export default function Brands() {
   return (
-    <section className='py-16 bg-white'>
+    <section className='py-16 bg-white dark:bg-gray-900'>
       <div className='max-w-6xl mx-auto px-4 sm:px-6 lg:px-8'>
         <div className='text-center mb-12'>
-          <h2 className='text-3xl font-bold text-gray-900'>
+          <h2 className='text-3xl font-bold text-gray-900 dark:text-white'>
             Brands I&apos;ve Worked With
           </h2>
-          <p className='mt-4 text-lg text-gray-600'>
+          <p className='mt-4 text-lg text-gray-600 dark:text-gray-300'>
             Proud to have collaborated with these amazing brands
           </p>
         </div>
@@ -40,7 +40,7 @@ export default function Brands() {
           {brands.map((brand) => (
             <div
               key={brand.name}
-              className='relative w-40 h-20 grayscale hover:grayscale-0 transition-all duration-300'
+              className='relative w-40 h-20 grayscale hover:grayscale-0 transition-all duration-300 opacity-80 dark:opacity-60 hover:opacity-100'
             >
               {brand.website ? (
                 <a
@@ -53,7 +53,7 @@ export default function Brands() {
                     src={brand.logo}
                     alt={`${brand.name} logo`}
                     fill
-                    className='object-contain'
+                    className='object-contain dark:invert'
                   />
                 </a>
               ) : (
@@ -61,7 +61,7 @@ export default function Brands() {
                   src={brand.logo}
                   alt={`${brand.name} logo`}
                   fill
-                  className='object-contain'
+                  className='object-contain dark:invert'
                 />
               )}
             </div>

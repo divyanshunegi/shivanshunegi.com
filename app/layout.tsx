@@ -1,5 +1,7 @@
 import './globals.css';
 
+import { ThemeProvider } from '../context/ThemeContext';
+
 export const metadata = {
   title: 'Shivanshu Negi',
   description:
@@ -14,8 +16,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='en'>
-      <body>{children}</body>
+    <html lang='en' suppressHydrationWarning>
+      <body className='transition-colors duration-200'>
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
     </html>
   );
 }
