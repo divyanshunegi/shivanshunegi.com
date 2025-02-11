@@ -20,6 +20,12 @@ export default function Header() {
                 Work
               </a>
               <a
+                href='/services'
+                className='text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors'
+              >
+                Services
+              </a>
+              <a
                 href='/academy'
                 className='text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors'
               >

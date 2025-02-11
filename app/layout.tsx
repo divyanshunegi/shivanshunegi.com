@@ -17,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en' suppressHydrationWarning>
-      <body className='transition-colors duration-200'>
+      <body className='transition-colors duration-200 font-["Helvetica_Neue",Helvetica,Arial,sans-serif]'>
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

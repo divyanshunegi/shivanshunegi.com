@@ -1,13 +1,15 @@
 export default function AcademyHero() {
   return (
-    <section className='min-h-screen bg-gray-900 text-white py-20 pt-[288px]'>
+    <section className='min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-white py-20 pt-[288px]'>
       <div className='max-w-6xl mx-auto px-4 sm:px-6 lg:px-8'>
         <div className='grid md:grid-cols-2 gap-12 items-center'>
           {/* Left Column - Text Content */}
           <div className='space-y-8'>
             <div>
-              <h1 className='text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-orange-400 to-pink-600 bg-clip-text text-transparent'>
-                Master the Art of Visual Storytelling
+              <h1 className='text-4xl md:text-5xl font-bold mb-6'>
+                <span className='bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text'>
+                  Master the Art of Visual Storytelling
+                </span>
               </h1>
               <p className='text-xl text-gray-300 mb-8'>
                 Join an exclusive masterclass on Storytelling, Cinematography,
@@ -22,7 +24,7 @@ export default function AcademyHero() {
               <ul className='space-y-3'>
                 <li className='flex items-center'>
                   <svg
-                    className='w-6 h-6 mr-2 text-orange-400'
+                    className='w-6 h-6 mr-2 text-blue-400'
                     fill='none'
                     stroke='currentColor'
                     viewBox='0 0 24 24'
@@ -38,7 +40,7 @@ export default function AcademyHero() {
                 </li>
                 <li className='flex items-center'>
                   <svg
-                    className='w-6 h-6 mr-2 text-orange-400'
+                    className='w-6 h-6 mr-2 text-blue-400'
                     fill='none'
                     stroke='currentColor'
                     viewBox='0 0 24 24'
@@ -54,7 +56,7 @@ export default function AcademyHero() {
                 </li>
                 <li className='flex items-center'>
                   <svg
-                    className='w-6 h-6 mr-2 text-orange-400'
+                    className='w-6 h-6 mr-2 text-blue-400'
                     fill='none'
                     stroke='currentColor'
                     viewBox='0 0 24 24'
@@ -72,14 +74,14 @@ export default function AcademyHero() {
             </div>
 
             <div className='pt-6'>
-              <button className='bg-gradient-to-r from-orange-500 to-pink-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:from-orange-600 hover:to-pink-700 transition-all duration-300 shadow-lg'>
+              <button className='bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-300 shadow-lg'>
                 Join the Waitlist
               </button>
             </div>
           </div>
 
           {/* Right Column - Form */}
-          <div className='bg-gray-800 p-8 rounded-2xl shadow-2xl'>
+          <div className='bg-gray-800/50 backdrop-blur-sm p-8 rounded-2xl shadow-2xl border border-gray-700'>
             <h2 className='text-2xl font-bold mb-6'>Register Your Interest</h2>
             <form className='space-y-6'>
               <div>
@@ -92,7 +94,7 @@ export default function AcademyHero() {
                 <input
                   type='text'
                   id='name'
-                  className='w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent'
+                  className='w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'
                   placeholder='John Doe'
                 />
               </div>
@@ -106,7 +108,7 @@ export default function AcademyHero() {
                 <input
                   type='email'
                   id='email'
-                  className='w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent'
+                  className='w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'
                   placeholder='john@example.com'
                 />
               </div>
@@ -119,7 +121,7 @@ export default function AcademyHero() {
                 </label>
                 <select
                   id='experience'
-                  className='w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent'
+                  className='w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'
                 >
                   <option value=''>Select your experience level</option>
                   <option value='beginner'>Beginner</option>
@@ -129,7 +131,7 @@ export default function AcademyHero() {
               </div>
               <button
                 type='submit'
-                className='w-full bg-gradient-to-r from-orange-500 to-pink-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-orange-600 hover:to-pink-700 transition-all duration-300'
+                className='w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-700 transition-all duration-300'
               >
                 Submit Application
               </button>

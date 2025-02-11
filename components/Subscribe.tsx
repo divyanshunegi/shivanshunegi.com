@@ -4,11 +4,10 @@ export default function Subscribe() {
       <div className='max-w-3xl mx-auto px-4 sm:px-6 lg:px-8'>
         <div className='bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700'>
           <h2 className='text-2xl font-semibold mb-4 text-gray-900 dark:text-white'>
-            Subscribe to LifeNotes
+            Subscribe to my Newsletter
           </h2>
           <p className='text-gray-600 dark:text-gray-300 mb-6'>
-            Get weekly insights on productivity, mindset, and achieving your
-            goals.
+            Get weekly updates on Film Making, Free LUTs and much more.
           </p>
           <form className='flex flex-col sm:flex-row gap-3 max-w-md mx-auto'>
             <input
