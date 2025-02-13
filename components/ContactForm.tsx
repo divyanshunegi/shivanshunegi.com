@@ -1,15 +1,10 @@
 'use client';
 
-import emailjs from '@emailjs/browser';
 import { useEffect, useRef, useState } from 'react';
 import { FaPaperPlane, FaTimes } from 'react-icons/fa';
 
-// EmailJS configuration
-const EMAILJS_CONFIG = {
-  serviceId: 'service_os9w6wr',
-  templateId: 'template_zrg7i9k',
-  publicKey: 'yef3AlNe0_bZnLBio',
-};
+// Replace this URL with your Google Apps Script deployment URL
+const FORM_ENDPOINT = 'YOUR_GOOGLE_APPS_SCRIPT_URL';
 
 interface ContactFormProps {
   isOpen: boolean;
@@ -29,12 +24,6 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
     'idle' | 'success' | 'error'
   >('idle');
   const modalRef = useRef<HTMLDivElement>(null);
-  const formRef = useRef<HTMLFormElement>(null);
-
-  // Initialize EmailJS when component mounts
-  useEffect(() => {
-    emailjs.init(EMAILJS_CONFIG.publicKey);
-  }, []);
 
   // Close on escape key press and handle click outside
   useEffect(() => {
@@ -51,14 +40,12 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
     if (isOpen) {
       document.addEventListener('keydown', handleEscape);
       document.addEventListener('mousedown', handleClickOutside);
-      // Prevent scrolling when modal is open
       document.body.style.overflow = 'hidden';
     }
 
     return () => {
       document.removeEventListener('keydown', handleEscape);
       document.removeEventListener('mousedown', handleClickOutside);
-      // Restore scrolling when modal is closed
       document.body.style.overflow = 'unset';
     };
   }, [isOpen, onClose]);
@@ -69,18 +56,17 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
     setSubmitStatus('idle');
 
     try {
-      await emailjs.send(
-        EMAILJS_CONFIG.serviceId,
-        EMAILJS_CONFIG.templateId,
-        {
-          to_name: 'Shivanshu',
-          from_name: formData.name,
-          from_email: formData.email,
-          subject: formData.subject,
-          message: formData.message,
+      const response = await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
-        EMAILJS_CONFIG.publicKey
-      );
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
 
       setSubmitStatus('success');
       setTimeout(() => {
@@ -127,7 +113,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
             Have a project in mind? Let's discuss how we can work together.
           </p>
 
-          <form ref={formRef} onSubmit={handleSubmit} className='space-y-4'>
+          <form onSubmit={handleSubmit} className='space-y-4'>
             <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
               <div>
                 <label
@@ -138,7 +124,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
                 </label>
                 <input
                   type='text'
-                  name='from_name'
+                  name='name'
                   id='name'
                   required
                   value={formData.name}
@@ -158,7 +144,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
                 </label>
                 <input
                   type='email'
-                  name='from_email'
+                  name='email'
                   id='email'
                   required
                   value={formData.email}
