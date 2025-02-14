@@ -53,9 +53,9 @@ export default function Brands() {
   }, [isPaused]);
 
   return (
-    <section className='py-16 bg-white dark:bg-gray-900 overflow-hidden'>
+    <section className='py-12 bg-white dark:bg-gray-900 overflow-hidden'>
       <div className='max-w-6xl mx-auto px-4 sm:px-6 lg:px-8'>
-        <div className='text-center mb-12'>
+        <div className='text-center mb-8'>
           <h2 className='text-3xl font-bold mb-4'>
             <span className='bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text'>
               Brands I&apos;ve Worked With
@@ -67,9 +67,9 @@ export default function Brands() {
         </div>
 
         <div className='relative max-w-4xl mx-auto'>
-          <div className='relative h-40 sm:h-48 overflow-hidden'>
+          <div className='relative h-24 sm:h-32 overflow-hidden'>
             <div
-              className='flex gap-8 sm:gap-16 absolute transition-transform duration-1000'
+              className='flex gap-8 sm:gap-12 absolute transition-transform duration-1000'
               style={{
                 transform: `translateX(-${offset}%)`,
               }}
@@ -83,14 +83,14 @@ export default function Brands() {
                     brands.length) -
                     1
                 );
-                const scale = position === 1 ? 1 : 0.85;
+                const scale = position === 1 ? 0.8 : 0.7;
                 const opacity = position === 1 ? 1 : 0.7;
                 const blur = position === 1 ? 0 : 1;
 
                 return (
                   <div
                     key={`${brand.name}-${index}`}
-                    className='flex-none w-40 h-40 transition-all duration-1000'
+                    className='flex-none w-24 h-24 sm:w-32 sm:h-32 transition-all duration-1000'
                     style={{
                       transform: `scale(${scale})`,
                       opacity,

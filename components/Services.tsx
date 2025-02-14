@@ -1,12 +1,13 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   FaCamera,
   FaChartLine,
   FaEdit,
   FaLightbulb,
+  FaPlay,
   FaShareAlt,
 } from 'react-icons/fa';
 
@@ -16,6 +17,7 @@ interface Service {
   description: string;
   icon: JSX.Element;
   features: string[];
+  videoUrl?: string;
   process: {
     step: number;
     title: string;
@@ -189,8 +191,34 @@ export default function Services({
 }) {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
   const [hoveredService, setHoveredService] = useState<number | null>(null);
+  const modalRef = useRef<HTMLDivElement>(null);
 
   const displayedServices = isHomePage ? services.slice(0, 3) : services;
+
+  // Function to extract YouTube video ID
+  const getYouTubeVideoId = (url: string) => {
+    const match = url.match(
+      /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&?]+)/
+    );
+    return match ? match[1] : null;
+  };
+
+  // Handle click outside modal
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
+        setSelectedService(null);
+      }
+    };
+
+    if (selectedService) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [selectedService]);
 
   return (
     <section className='py-16 bg-white dark:bg-gray-900'>
@@ -218,9 +246,28 @@ export default function Services({
               onHoverStart={() => setHoveredService(service.id)}
               onHoverEnd={() => setHoveredService(null)}
               onClick={() => setSelectedService(service)}
-              className='relative bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden cursor-pointer group'
+              className='relative bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden group'
             >
-              <div className='absolute inset-0 bg-gradient-to-br from-blue-600/20 to-purple-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300' />
+              {service.videoUrl ? (
+                <div className='relative aspect-video w-full'>
+                  <iframe
+                    src={`https://www.youtube.com/embed/${getYouTubeVideoId(
+                      service.videoUrl
+                    )}`}
+                    title={`${service.title} showcase video`}
+                    className='absolute inset-0 w-full h-full'
+                    allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+                    allowFullScreen
+                  />
+                </div>
+              ) : (
+                <div className='relative aspect-video w-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center'>
+                  <div className='text-gray-400 dark:text-gray-500'>
+                    <FaPlay className='w-12 h-12 opacity-20' />
+                  </div>
+                </div>
+              )}
+
               <div className='relative p-8'>
                 <motion.div
                   initial={false}
@@ -281,6 +328,7 @@ export default function Services({
         {selectedService && (
           <div className='fixed inset-0 z-50 overflow-y-auto bg-black bg-opacity-50 flex items-center justify-center p-4'>
             <motion.div
+              ref={modalRef}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}

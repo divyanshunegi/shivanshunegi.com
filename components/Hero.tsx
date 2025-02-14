@@ -1,10 +1,12 @@
+'use client';
+
 import Image from 'next/image';
 import { FaPlay } from 'react-icons/fa6';
 
 export default function Hero() {
   return (
-    <section className='min-h-screen relative flex items-center justify-center overflow-hidden bg-gradient-to-b from-gray-900 to-gray-800 font-["Helvetica_Neue",Helvetica,Arial,sans-serif]'>
-      {/* Background Video/Image with Overlay */}
+    <section className='min-h-screen relative flex items-center justify-center overflow-hidden font-["Helvetica_Neue",Helvetica,Arial,sans-serif] text-white'>
+      {/* Background with gradient */}
       <div className='absolute inset-0 z-0'>
         <Image
           src='/images/Hero BG.png'
@@ -13,7 +15,7 @@ export default function Hero() {
           className='object-cover opacity-40'
           priority
         />
-        <div className='absolute inset-0 bg-gradient-to-b from-gray-900/35 via-gray-900/28 to-gray-900/49' />
+        <div className='absolute inset-0 bg-gradient-to-b from-gray-900/25 via-gray-900/20 to-gray-900/35' />
       </div>
 
       {/* Content */}
@@ -23,39 +25,66 @@ export default function Hero() {
           {/* Strobe light effect */}
           <div className='absolute inset-0 rounded-full bg-[#fff5e9] opacity-0 group-hover:opacity-70 blur-xl group-hover:animate-pulse transition-all duration-300' />
           {/* Gradient ring */}
-          <div className='absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 animate-spin-slow opacity-70 group-hover:opacity-90 transition-opacity duration-300' />
-          <div className='absolute inset-1 rounded-full bg-gray-900 group-hover:bg-gray-950 transition-colors duration-300' />
+          <div className='absolute inset-0 rounded-full animate-spin-slow opacity-70 group-hover:opacity-90 transition-opacity duration-300 bg-gradient-to-r from-blue-500 to-purple-600' />
+          <div className='absolute inset-1 rounded-full transition-colors duration-300 bg-gray-900 group-hover:bg-gray-950' />
           <Image
             src='/images/PFP.jpg'
             alt='Profile'
             fill
-            className='rounded-full object-cover border-4 border-gray-900 group-hover:scale-105 group-hover:border-gray-950 transition-all duration-300'
+            className='rounded-full object-cover border-4 border-gray-900 group-hover:border-gray-950 group-hover:scale-105 transition-all duration-300'
             priority
           />
 
           {/* Animated Text Elements */}
           <div className='absolute -inset-24 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out'>
-            <span className='absolute top-0 left-[20%] -translate-x-1/2 text-sm font-medium text-gray-900 bg-white/90 px-3 py-1 rounded-full backdrop-blur-sm group-hover:-translate-y-2 transition-all duration-700 ease-out hover:scale-110 animate-float'>
-              Cinematographer
-            </span>
-            <span className='absolute top-[10%] -right-20 text-sm font-medium text-gray-900 bg-white/90 px-3 py-1 rounded-full backdrop-blur-sm group-hover:translate-x-0 translate-x-2 transition-all duration-700 ease-out delay-75 hover:scale-110 animate-float-delayed'>
-              Film Editor
-            </span>
-            <span className='absolute top-[75%] left-1/2 -translate-x-1/2 text-sm font-medium text-gray-900 bg-white/90 px-3 py-1 rounded-full backdrop-blur-sm group-hover:translate-y-1 transition-all duration-700 ease-out delay-150 hover:scale-110 animate-float'>
-              Creative Strategist
-            </span>
-            <span className='absolute top-1/4 -left-20 text-sm font-medium text-gray-900 bg-white/90 px-3 py-1 rounded-full backdrop-blur-sm group-hover:translate-x-0 -translate-x-2 transition-all duration-700 ease-out delay-225 hover:scale-110 animate-float-delayed'>
-              Musician
-            </span>
-            <span className='absolute top-1/3 -right-16 text-sm font-medium text-gray-900 bg-white/90 px-3 py-1 rounded-full backdrop-blur-sm group-hover:translate-y-0 -translate-y-1 group-hover:translate-x-0 translate-x-1 transition-all duration-700 ease-out delay-300 hover:scale-110 animate-float'>
-              Tutor
-            </span>
-            <span className='absolute bottom-1/3 -left-16 text-sm font-medium text-gray-900 bg-white/90 px-3 py-1 rounded-full backdrop-blur-sm group-hover:translate-y-0 translate-y-1 group-hover:translate-x-0 -translate-x-1 transition-all duration-700 ease-out delay-375 hover:scale-110 animate-float-delayed'>
-              YouTuber
-            </span>
-            <span className='absolute bottom-1/3 -right-16 text-sm font-medium text-gray-900 bg-white/90 px-3 py-1 rounded-full backdrop-blur-sm group-hover:translate-y-0 translate-y-1 group-hover:translate-x-0 translate-x-1 transition-all duration-700 ease-out delay-450 hover:scale-110 animate-float'>
-              Traveller
-            </span>
+            {[
+              {
+                text: 'Cinematographer',
+                position:
+                  'top-0 left-[20%] -translate-x-1/2 group-hover:-translate-y-2',
+              },
+              {
+                text: 'Film Editor',
+                position:
+                  'top-[10%] -right-20 translate-x-2 group-hover:translate-x-0',
+              },
+              {
+                text: 'Creative Strategist',
+                position:
+                  'top-[75%] left-1/2 -translate-x-1/2 group-hover:translate-y-1',
+              },
+              {
+                text: 'Musician',
+                position:
+                  'top-1/4 -left-20 -translate-x-2 group-hover:translate-x-0',
+              },
+              {
+                text: 'Tutor',
+                position:
+                  'top-1/3 -right-16 -translate-y-1 translate-x-1 group-hover:translate-y-0 group-hover:translate-x-0',
+              },
+              {
+                text: 'YouTuber',
+                position:
+                  'bottom-1/3 -left-16 translate-y-1 -translate-x-1 group-hover:translate-y-0 group-hover:translate-x-0',
+              },
+              {
+                text: 'Traveller',
+                position:
+                  'bottom-1/3 -right-16 translate-y-1 translate-x-1 group-hover:translate-y-0 group-hover:translate-x-0',
+              },
+            ].map((item, index) => (
+              <span
+                key={item.text}
+                className={`absolute text-sm font-medium text-white bg-gray-800/90 px-3 py-1 rounded-full backdrop-blur-sm transition-all duration-700 ease-out delay-${
+                  index * 75
+                } hover:scale-110 ${
+                  index % 2 === 0 ? 'animate-float' : 'animate-float-delayed'
+                } ${item.position}`}
+              >
+                {item.text}
+              </span>
+            ))}
           </div>
         </div>
 
@@ -78,14 +107,14 @@ export default function Hero() {
           <div className='flex flex-col sm:flex-row gap-4 justify-center mt-8'>
             <a
               href='/work'
-              className='inline-flex items-center px-8 py-3 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-200'
+              className='inline-flex items-center px-8 py-3 rounded-full text-white font-medium transform hover:scale-105 transition-all duration-200 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700'
             >
               <FaPlay className='w-4 h-4 mr-2' />
               View My Work
             </a>
             <a
               href='/academy'
-              className='inline-flex items-center px-8 py-3 rounded-full bg-gray-800 text-white font-medium hover:bg-gray-700 border border-gray-700 transform hover:scale-105 transition-all duration-200'
+              className='inline-flex items-center px-8 py-3 rounded-full font-medium transform hover:scale-105 transition-all duration-200 bg-gray-800 text-white hover:bg-gray-700 border border-gray-700'
             >
               Join Academy
             </a>
@@ -101,7 +130,7 @@ export default function Hero() {
             ].map((stat, index) => (
               <div
                 key={index}
-                className='p-4 rounded-lg bg-gray-800/50 backdrop-blur-sm'
+                className='p-4 rounded-lg backdrop-blur-sm bg-black/50'
               >
                 <div className='text-2xl font-bold text-white'>
                   {stat.value}

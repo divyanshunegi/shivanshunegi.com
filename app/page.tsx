@@ -10,7 +10,9 @@ export default function Home() {
   return (
     <main className='min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white'>
       <Header />
-      <Hero />
+      <div className='bg-gray-900'>
+        <Hero />
+      </div>
       <Services isHomePage />
       <Portfolio />
       <Brands />
