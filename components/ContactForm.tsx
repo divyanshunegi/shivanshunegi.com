@@ -66,13 +66,17 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
         body: JSON.stringify(formData),
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        throw new Error('Failed to submit form');
+        throw new Error(data.error || 'Failed to submit form');
       }
 
       setSubmitStatus('success');
+      setErrorMessage(''); // Clear any previous errors
 
       // Clear form on success
+      // Show success state for 2 seconds before closing
       setTimeout(() => {
         onClose();
         setSubmitStatus('idle');
@@ -233,6 +237,12 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
             </button>
           </form>
 
+          {/* Status Messages */}
+          {submitStatus === 'success' && (
+            <div className='mt-4 p-3 bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-200 rounded-lg text-sm'>
+              Message sent successfully! We'll get back to you soon.
+            </div>
+          )}
           {errorMessage && (
             <div className='mt-4 p-3 bg-red-100 dark:bg-red-900/50 text-red-700 dark:text-red-200 rounded-lg text-sm'>
               {errorMessage}
