@@ -9,7 +9,7 @@ const notion = new Client({
   auth: process.env.NOTION_API_KEY,
 });
 
-const databaseId = process.env.NOTION_ACADEMY_DATABASE_ID;
+const databaseId = process.env.NOTION_DATABASE_ID;
 
 if (!databaseId) {
   throw new Error('Notion database ID is not configured');
@@ -123,7 +123,7 @@ export async function POST(request: Request) {
             },
           ],
         },
-        'Porfolio URL': {
+        'Portfolio URL': {
           url: portfolio || null,
         },
         'Referral Source': {
