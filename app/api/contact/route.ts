@@ -1,23 +1,37 @@
 import { Client } from '@notionhq/client';
 import { NextResponse } from 'next/server';
 
+if (!process.env.NOTION_API_KEY) {
+  throw new Error('Notion API key is not configured');
+}
+
 const notion = new Client({
   auth: process.env.NOTION_API_KEY,
 });
 
-const databaseId = process.env.NOTION_DATABASE_ID;
+const databaseId = process.env.NOTION_CONTACT_DATABASE_ID;
+
+if (!databaseId) {
+  throw new Error('Notion database ID is not configured');
+}
+
+interface NotionError {
+  message: string;
+  stack?: string;
+  body?: unknown;
+}
+
+interface ContactFormData {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
 
 export async function POST(request: Request) {
   try {
-    const { name, email, subject, message } = await request.json();
-
-    // Validate required environment variables
-    if (!process.env.NOTION_API_KEY) {
-      throw new Error('Notion API key not configured');
-    }
-    if (!databaseId) {
-      throw new Error('Notion database ID not configured');
-    }
+    const { name, email, subject, message } =
+      (await request.json()) as ContactFormData;
 
     // Validate input
     if (!name || !email || !subject || !message) {
@@ -64,7 +78,7 @@ export async function POST(request: Request) {
 
     await notion.pages.create({
       parent: {
-        database_id: databaseId,
+        database_id: databaseId as string,
       },
       properties: {
         Name: {
@@ -115,10 +129,9 @@ export async function POST(request: Request) {
       message: 'Form submitted successfully',
     });
   } catch (error) {
-    const errorMessage =
-      error instanceof Error ? error.message : 'Unknown error';
+    const notionError = error as NotionError;
     return NextResponse.json(
-      { error: `Failed to submit form to Notion: ${errorMessage}` },
+      { error: `Failed to submit form to Notion: ${notionError.message}` },
       { status: 500 }
     );
   }
