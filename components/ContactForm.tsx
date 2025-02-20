@@ -3,14 +3,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { FaPaperPlane, FaTimes } from 'react-icons/fa';
 
-// Replace this URL with your Google Apps Script deployment URL
-const FORM_ENDPOINT =
-  'https://script.google.com/macros/s/AKfycbyDecrMHcL-jJs3M6ifrRvKopqSuyYGb_0tL4e0qdyD_0fxjfbqL9ic9B-kvg5eM0X7fg/exec';
-
-// Backup submission URL using formsubmit.co service
-const BACKUP_ENDPOINT = `https://formsubmit.co/ajax/${encodeURIComponent(
-  'shivanshunegi@gmail.com'
-)}`;
+// API endpoint for Notion integration
+const FORM_ENDPOINT = '/api/contact';
 
 interface ContactFormProps {
   isOpen: boolean;
@@ -30,7 +24,6 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
     'idle' | 'success' | 'error'
   >('idle');
   const [errorMessage, setErrorMessage] = useState<string>('');
-  const [useBackup, setUseBackup] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
 
   // Close on escape key press and handle click outside
@@ -58,29 +51,6 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
     };
   }, [isOpen, onClose]);
 
-  const submitToBackup = async () => {
-    const response = await fetch(BACKUP_ENDPOINT, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify({
-        name: formData.name,
-        email: formData.email,
-        subject: formData.subject,
-        message: formData.message,
-        _template: 'table',
-      }),
-    });
-
-    if (!response.ok) {
-      throw new Error('Backup submission failed');
-    }
-
-    return response.json();
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -88,59 +58,26 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
     setErrorMessage('');
 
     try {
-      if (!useBackup) {
-        try {
-          // Simpler data format
-          const data = {
-            name: formData.name,
-            email: formData.email,
-            subject: formData.subject,
-            message: formData.message,
-            timestamp: new Date().toISOString(),
-          };
+      const response = await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-          // Test the endpoint first
-          await fetch(FORM_ENDPOINT);
-
-          // Create URL with data as query parameters
-          const params = new URLSearchParams();
-          Object.entries(data).forEach(([key, value]) => {
-            params.append(key, value);
-          });
-
-          const url = `${FORM_ENDPOINT}?${params.toString()}`;
-
-          await fetch(url, {
-            method: 'GET',
-            mode: 'no-cors',
-          });
-
-          setSubmitStatus('success');
-
-          // Clear form on success
-          setTimeout(() => {
-            onClose();
-            setSubmitStatus('idle');
-            setFormData({ name: '', email: '', subject: '', message: '' });
-          }, 2000);
-        } catch (error) {
-          // If primary submission fails, try backup
-          setUseBackup(true);
-          throw new Error('Primary submission failed, trying backup...');
-        }
-      } else {
-        // Use backup submission
-        await submitToBackup();
-        setSubmitStatus('success');
-
-        // Clear form on success
-        setTimeout(() => {
-          onClose();
-          setSubmitStatus('idle');
-          setFormData({ name: '', email: '', subject: '', message: '' });
-          setUseBackup(false); // Reset to primary method for next attempt
-        }, 2000);
+      if (!response.ok) {
+        throw new Error('Failed to submit form');
       }
+
+      setSubmitStatus('success');
+
+      // Clear form on success
+      setTimeout(() => {
+        onClose();
+        setSubmitStatus('idle');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      }, 2000);
     } catch (error) {
       setSubmitStatus('error');
       setErrorMessage(
