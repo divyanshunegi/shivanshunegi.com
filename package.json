@@ -20,6 +20,7 @@
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@heroicons/react": "^2.2.0",
+    "@notionhq/client": "^2.2.16",
     "clsx": "^2.0.0",
     "framer-motion": "^12.4.2",
     "lucide-react": "^0.438.0",
