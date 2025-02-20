@@ -27,6 +27,32 @@ export async function POST(request: Request) {
       );
     }
 
+    // Validate field lengths
+    if (name.length > 100) {
+      return NextResponse.json(
+        { error: 'Name must be less than 100 characters' },
+        { status: 400 }
+      );
+    }
+    if (email.length > 100) {
+      return NextResponse.json(
+        { error: 'Email must be less than 100 characters' },
+        { status: 400 }
+      );
+    }
+    if (subject.length > 200) {
+      return NextResponse.json(
+        { error: 'Subject must be less than 200 characters' },
+        { status: 400 }
+      );
+    }
+    if (message.length > 1000) {
+      return NextResponse.json(
+        { error: 'Message must be less than 1000 characters' },
+        { status: 400 }
+      );
+    }
+
     // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {

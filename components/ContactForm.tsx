@@ -141,6 +141,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
                   name='name'
                   id='name'
                   required
+                  maxLength={100}
                   value={formData.name}
                   onChange={(e) =>
                     setFormData({ ...formData, name: e.target.value })
@@ -161,6 +162,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
                   name='email'
                   id='email'
                   required
+                  maxLength={100}
                   value={formData.email}
                   onChange={(e) =>
                     setFormData({ ...formData, email: e.target.value })
@@ -183,6 +185,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
                 name='subject'
                 id='subject'
                 required
+                maxLength={200}
                 value={formData.subject}
                 onChange={(e) =>
                   setFormData({ ...formData, subject: e.target.value })
@@ -203,6 +206,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
                 id='message'
                 name='message'
                 required
+                maxLength={1000}
                 value={formData.message}
                 onChange={(e) =>
                   setFormData({ ...formData, message: e.target.value })
@@ -216,6 +220,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
             <button
               type='submit'
               disabled={isSubmitting}
+              aria-busy={isSubmitting}
               className={`w-full py-3 px-6 rounded-lg flex items-center justify-center gap-2 text-white font-medium transition-all duration-200 ${
                 isSubmitting
                   ? 'bg-gray-400 cursor-not-allowed'
