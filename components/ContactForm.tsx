@@ -108,7 +108,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
       {/* Form Container */}
       <div
         ref={modalRef}
-        className='relative w-full max-w-lg bg-white dark:bg-gray-800 rounded-2xl shadow-xl transform transition-all duration-300 scale-100 animate-modalSlideIn'
+        className='relative w-full max-w-lg bg-gray-100 dark:bg-gray-800 rounded-2xl shadow-xl transform transition-all duration-300 scale-100 animate-modalSlideIn'
       >
         {/* Close Button */}
         <button

@@ -51,162 +51,126 @@ export default function Header() {
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         isAtTop
           ? 'py-6 bg-transparent'
-          : 'py-2 bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg border-b border-gray-200 dark:border-gray-700 shadow-sm'
+          : 'py-4 bg-gray-50/90 dark:bg-gray-900/90 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800'
       }`}
     >
-      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+      <div className='max-w-5xl mx-auto px-4 sm:px-6 lg:px-8'>
         <div className='flex justify-between items-center'>
           {/* Logo */}
           <a
             href='/'
-            className={`text-xl font-bold transition-all duration-300 ${
+            className={`text-lg font-medium transition-all duration-300 ${
               isAtTop
-                ? 'text-white'
-                : 'text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400'
+                ? 'text-gray-900 dark:text-white'
+                : 'text-gray-900 dark:text-white'
             }`}
           >
             Shivansh Negi
           </a>
 
           {/* Desktop Navigation */}
-          <nav className='hidden md:flex items-center gap-8'>
-            <a
-              href='/'
-              className={`transition-colors ${
-                isAtTop
-                  ? 'text-gray-200 hover:text-white'
-                  : 'text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
-              }`}
-            >
-              Home
-            </a>
+          <nav className='hidden md:flex items-center space-x-8'>
             <a
               href='/work'
-              className={`transition-colors ${
+              className={`transition-colors text-sm ${
                 isAtTop
-                  ? 'text-gray-200 hover:text-white'
-                  : 'text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
+                  ? 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
+                  : 'text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
               }`}
             >
               Work
             </a>
             <a
-              href='/services'
-              className={`transition-colors ${
+              href='/resources'
+              className={`transition-colors text-sm ${
                 isAtTop
-                  ? 'text-gray-200 hover:text-white'
-                  : 'text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
+                  ? 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
+                  : 'text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
+              }`}
+            >
+              Resources
+            </a>
+            <a
+              href='/services'
+              className={`transition-colors text-sm ${
+                isAtTop
+                  ? 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
+                  : 'text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
               }`}
             >
               Services
             </a>
-            <a
-              href='/academy'
-              className={`transition-colors ${
-                isAtTop
-                  ? 'text-gray-200 hover:text-white'
-                  : 'text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
-              }`}
-            >
-              Academy
-            </a>
             <button
               onClick={openContactForm}
-              className={`px-4 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 ${
+              className={`px-4 py-2 rounded-md text-sm transition-all ${
                 isAtTop
-                  ? 'bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white'
-                  : 'bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white'
+                  ? 'bg-gray-900 text-white dark:bg-white dark:text-gray-900'
+                  : 'bg-gray-900 text-white dark:bg-white dark:text-gray-900'
               }`}
             >
               Contact
             </button>
             <button
               onClick={toggleDarkMode}
-              className={`p-2 transition-colors ${
-                isAtTop
-                  ? 'text-gray-200 hover:text-white'
-                  : 'text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
-              }`}
+              className='p-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
               aria-label='Toggle dark mode'
             >
-              {isDarkMode ? (
-                <FaSun className='w-5 h-5' />
-              ) : (
-                <FaMoon className='w-5 h-5' />
-              )}
+              {isDarkMode ? <FaSun className='w-4 h-4' /> : <FaMoon className='w-4 h-4' />}
             </button>
           </nav>
 
           {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className={`md:hidden p-2 transition-colors ${
-              isAtTop
-                ? 'text-gray-200 hover:text-white'
-                : 'text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
-            }`}
-            aria-label='Toggle menu'
-          >
-            <FaBars className='w-6 h-6' />
-          </button>
-        </div>
-
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <nav className='md:hidden py-4 space-y-4 mt-4'>
-            <a
-              href='/'
-              className='block text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors'
-            >
-              Home
-            </a>
-            <a
-              href='/work'
-              className='block text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors'
-            >
-              Work
-            </a>
-            <a
-              href='/services'
-              className='block text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors'
-            >
-              Services
-            </a>
-            <a
-              href='/academy'
-              className='block text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors'
-            >
-              Academy
-            </a>
-            <button
-              onClick={() => {
-                openContactForm();
-                setIsMenuOpen(false);
-              }}
-              className='w-full px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white rounded-lg transition-all duration-200'
-            >
-              Contact
-            </button>
+          <div className='flex items-center md:hidden'>
             <button
               onClick={toggleDarkMode}
-              className='w-full flex items-center justify-center p-2 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors'
+              className='p-2 mr-2 text-gray-700 dark:text-gray-300'
               aria-label='Toggle dark mode'
             >
-              {isDarkMode ? (
-                <>
-                  <FaSun className='w-5 h-5 mr-2' />
-                  Light Mode
-                </>
-              ) : (
-                <>
-                  <FaMoon className='w-5 h-5 mr-2' />
-                  Dark Mode
-                </>
-              )}
+              {isDarkMode ? <FaSun className='w-4 h-4' /> : <FaMoon className='w-4 h-4' />}
             </button>
-          </nav>
-        )}
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className='p-2 text-gray-700 dark:text-gray-300'
+              aria-label='Toggle menu'
+            >
+              <FaBars className='w-5 h-5' />
+            </button>
+          </div>
+        </div>
       </div>
+
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className='md:hidden bg-gray-50 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800'>
+          <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4'>
+            <nav className='flex flex-col space-y-4'>
+              <a
+                href='/work'
+                className='py-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Work
+              </a>
+              <a
+                href='/resources'
+                className='py-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Resources
+              </a>
+              <button
+                onClick={() => {
+                  openContactForm();
+                  setIsMenuOpen(false);
+                }}
+                className='py-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
+              >
+                Contact
+              </button>
+            </nav>
+          </div>
+        </div>
+      )}
     </header>
   );
 }

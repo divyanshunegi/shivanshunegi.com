@@ -12,7 +12,7 @@ const notion = new Client({
 const databaseId = process.env.NOTION_ACADEMY_DATABASE_ID;
 
 if (!databaseId) {
-  throw new Error('Notion database ID is not configured');
+  throw new Error('Notion Academy database ID is not configured');
 }
 
 interface NotionError {
@@ -21,122 +21,146 @@ interface NotionError {
   body?: unknown;
 }
 
+interface AcademyFormData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  education: string;
+  field: string;
+  experience: string;
+  software: string;
+  equipment: string;
+  goals: string;
+  portfolio: string;
+  referral: string;
+}
+
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
-    if (!databaseId) {
-      throw new Error('Notion database ID is not configured');
+    const formData = (await request.json()) as AcademyFormData;
+
+    // Validate input
+    const requiredFields = ['firstName', 'lastName', 'email', 'phone'];
+    for (const field of requiredFields) {
+      if (!formData[field as keyof AcademyFormData]) {
+        return NextResponse.json(
+          { error: `${field} is required` },
+          { status: 400 }
+        );
+      }
     }
 
-    // First verify database access
-    try {
-      await notion.databases.retrieve({ database_id: databaseId });
-    } catch (error) {
-      const notionError = error as NotionError;
-      throw new Error(`Database access failed: ${notionError.message}`);
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      return NextResponse.json(
+        { error: 'Invalid email format' },
+        { status: 400 }
+      );
     }
-
-    const {
-      firstName,
-      lastName,
-      email,
-      phone,
-      education,
-      field,
-      experience,
-      software,
-      equipment,
-      goals,
-      portfolio,
-      referral,
-    } = body;
 
     await notion.pages.create({
       parent: {
-        database_id: databaseId,
+        database_id: databaseId as string,
       },
       properties: {
-        Name: {
+        'First Name': {
           title: [
             {
               text: {
-                content: `${firstName} ${lastName}`,
+                content: formData.firstName,
+              },
+            },
+          ],
+        },
+        'Last Name': {
+          rich_text: [
+            {
+              text: {
+                content: formData.lastName,
               },
             },
           ],
         },
         Email: {
-          email: email,
+          email: formData.email,
         },
         Phone: {
+          phone_number: formData.phone,
+        },
+        Education: {
           rich_text: [
             {
               text: {
-                content: phone,
+                content: formData.education || '',
               },
             },
           ],
         },
-        'Educational Level': {
-          select: {
-            name: education,
-          },
-        },
-        'Field of Study': {
+        Field: {
           rich_text: [
             {
               text: {
-                content: field,
+                content: formData.field || '',
               },
             },
           ],
         },
-        'Experience Level': {
-          select: {
-            name: experience,
-          },
-        },
-        'Software Proficiency': {
+        Experience: {
           rich_text: [
             {
               text: {
-                content: software,
+                content: formData.experience || '',
               },
             },
           ],
         },
-        'Equipment Experience': {
+        Software: {
           rich_text: [
             {
               text: {
-                content: equipment,
+                content: formData.software || '',
               },
             },
           ],
         },
-        'Learning Goals': {
+        Equipment: {
           rich_text: [
             {
               text: {
-                content: goals,
+                content: formData.equipment || '',
               },
             },
           ],
         },
-        'Portfolio URL': {
-          url: portfolio || null,
+        Goals: {
+          rich_text: [
+            {
+              text: {
+                content: formData.goals || '',
+              },
+            },
+          ],
         },
-        'Referral Source': {
-          select: {
-            name: referral,
-          },
+        Portfolio: {
+          url: formData.portfolio || null,
+        },
+        Referral: {
+          rich_text: [
+            {
+              text: {
+                content: formData.referral || '',
+              },
+            },
+          ],
         },
         Status: {
           status: {
-            name: 'Not Started',
+            name: 'New',
           },
         },
-        'Application Date': {
+        'Submission Date': {
           date: {
             start: new Date().toISOString(),
           },
@@ -144,18 +168,14 @@ export async function POST(request: Request) {
       },
     });
 
-    return NextResponse.json(
-      { message: 'Application submitted successfully' },
-      { status: 200 }
-    );
+    return NextResponse.json({
+      success: true,
+      message: 'Application submitted successfully',
+    });
   } catch (error) {
     const notionError = error as NotionError;
     return NextResponse.json(
-      {
-        message: 'Error submitting application',
-        error: notionError.message,
-        details: notionError.body,
-      },
+      { error: `Failed to submit application: ${notionError.message}` },
       { status: 500 }
     );
   }
