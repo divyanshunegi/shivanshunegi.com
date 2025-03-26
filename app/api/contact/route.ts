@@ -1,19 +1,11 @@
 import { Client } from '@notionhq/client';
 import { NextResponse } from 'next/server';
 
-if (!process.env.NOTION_API_KEY) {
-  throw new Error('Notion API key is not configured');
-}
+const notionApiKey = process.env.NOTION_API_KEY;
+const databaseId =
+  process.env.NOTION_DATABASE_ID || process.env.NOTION_CONTACT_DATABASE_ID;
 
-const notion = new Client({
-  auth: process.env.NOTION_API_KEY,
-});
-
-const databaseId = process.env.NOTION_DATABASE_ID;
-
-if (!databaseId) {
-  throw new Error('Notion database ID is not configured');
-}
+const notion = notionApiKey ? new Client({ auth: notionApiKey }) : null;
 
 interface NotionError {
   message: string;
@@ -74,6 +66,14 @@ export async function POST(request: Request) {
         { error: 'Invalid email format' },
         { status: 400 }
       );
+    }
+
+    if (!notion || !databaseId) {
+      return NextResponse.json({
+        success: true,
+        message:
+          'Form submitted successfully (Notion integration not configured)',
+      });
     }
 
     await notion.pages.create({
